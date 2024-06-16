@@ -1,9 +1,7 @@
 import java.util.*;
-
 class TreeNode {
     int val;
     TreeNode left, right;
-
     TreeNode(int val) {
         this.val = val;
         left = right = null;
@@ -11,15 +9,11 @@ class TreeNode {
 }
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String treeInput = scanner.nextLine();
-        
         TreeNode root = buildTree(treeInput);
-
         flattenBinaryTree(root);
-
         printLinkedList(root);
     }
 
@@ -49,21 +43,17 @@ public class Main {
         if (root == null || (root.left == null && root.right == null)) {
             return;
         }
-
         if (root.left != null) {
             flattenBinaryTree(root.left);
-
             TreeNode temp = root.right;
             root.right = root.left;
             root.left = null;
-
             TreeNode rightMost = root.right;
             while (rightMost.right != null) {
                 rightMost = rightMost.right;
             }
             rightMost.right = temp;
         }
-
         flattenBinaryTree(root.right);
     }
 
